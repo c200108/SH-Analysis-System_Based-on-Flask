@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.4.6.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/init.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static',filename = 'js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/echarts.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/echarts-gl.js') }}"></script>
+    {% block head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/"> <img src="{{ url_for('static',filename = 'images/logo.png') }}" width="60" height="30" class="d-inline-block align-top" alt="" >
+                <b>SH-Analysis</b></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><b>首页</b> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 40px">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('func.data_query') }}" ><b>数据查询</b></a>
+                    </li>
+
+                    <li class="nav-item" style="margin-left:40px">
+                        <a class="nav-link active" href="{{ url_for('func.data_display') }}"><b>数据展示</b></a>
+                    </li>
+                    <li class="nav-item" style="margin-left:40px">
+                        <a class="nav-link active" href="{{ url_for('func.data_forecast') }}"><b>数据预测</b></a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"style="margin-left:40px">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav" style="margin-left: 40px">
+                  {% if user %}
+                    <li class="nav-item">
+                      <span class="nav-link"><a href="{{ url_for('user.message') }}"><b>{{ user.username }}</b></a></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.logout') }}"><b>退出登录</b></a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ url_for('user.login') }}"><b>登录</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user.register') }}"><b>注册</b></a>
+                    </li>
+                  {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>{# 导航栏 #}
+    <div class="container">{# 容器 #}
+        {% block body %}{% endblock %}
+    </div>
+    <div class="container-fluid" style="background-color: rgba(0,0,0,0.05)">
+        {% block body_display %}{% endblock %}
+    </div>
+</body>
+<footer class="text-center border-bottom" style="margin-top: 50px">
+    Copyright © 2022-2023
+    <a class="footer-url" href="http://127.0.0.1:5000" target="_blank" style="margin-left:10px; margin-right: 10px">SH-Analysis</a>
+    版权所有🏠
+    <p>📫网站联系邮箱:sh_analysis2023@163.com</p>
+</footer>{# 底部栏 #}
+</html>

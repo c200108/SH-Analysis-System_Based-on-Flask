@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-数据查询{% endblock %}
+
+{% block head %}
+    <!--引入layui的css文件-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="layui-container" style="background-color: #ffe8a1">
+        <h1 class=" text-center" style="padding: 2rem 1rem" ><strong>潍坊市各县市区二手房详情查询</strong></h1>
+
+        <form method="post" action="{{url_for('func.data_query')}}" class="layui-col-md4 text-center" style="padding: 2rem 0.5rem">
+            <input type="text" name="title" id="title" placeholder="关键词" style="width: 150px; height: 35px">
+            <input type="submit" class="layui-btn layui-btn-sm" value="搜索"style="margin-left: 20px;">
+        </form>
+        <form method="post" action="{{url_for('func.data_query')}}" class="layui-col-md4 text-center" style="padding: 2rem 0.5rem">
+            <input type="text" name="title" id="district" placeholder="地级市" style="width: 150px; height: 35px">
+            <input type="submit" class="layui-btn layui-btn-sm" value="搜索"style="margin-left: 20px;">
+        </form>
+        <form method="post" action="{{url_for('func.data_query')}}" class="layui-col-md4 text-center" style="padding: 2rem 0.5rem">
+            <input type="text" name="title" id="community" placeholder="小区" style="width: 150px; height: 35px">
+            <input type="submit" class="layui-btn layui-btn-sm" value="搜索"style="margin-left: 20px;">
+        </form>
+        <div class="table-container" style="margin-top: 30px">
+            <table class="layui-table text-center" lay-even lay-size="sm" id="lay_page" >
+                <colgroup>
+                    <col width="250" class="简介">
+                    <col width="50" class="总价">
+                    <col width="50" class="单价">
+                    <col width="50" class="面积">
+                    <col width="100" class="户型">
+                    <col width="100" class="楼层">
+                    <col width="50" class="朝向">
+                    <col width="50" class="楼型">
+                    <col width="50" class="地区">
+                    <col width="50" class="区域">
+                    <col width="100" class="小区">
+                    <col width="50" class="装修">
+                    <col width="50" class="电梯">
+                    <col width="50" class="梯户比例">
+                    <col width="50" class="房屋性质">
+                </colgroup>
+                <thead >
+                <tr>
+                    <th>简介</th>
+                    <th>总价</th>
+                    <th>单价</th>
+                    <th>面积</th>
+                    <th>户型</th>
+                    <th>楼层</th>
+                    <th>朝向</th>
+                    <th>楼型</th>
+                    <th>地区</th>
+                    <th>附近区域</th>
+                    <th>小区</th>
+                    <th>装修</th>
+                    <th>电梯</th>
+                    <th>梯户比例</th>
+                    <th>房屋性质</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in data[offset:offset+limit] %}
+                    <tr>
+                        <td>{{i.title}}</td>
+                        <td>{{i.total_price}}</td>
+                        <td>{{i.unit_price}}</td>
+                        <td>{{i.square}}</td>
+                        <td>{{i.size}}</td>
+                        <td>{{i.floor}}</td>
+                        <td>{{i.direction}}</td>
+                        <td>{{i.type}}</td>
+                        <td>{{i.district}}</td>
+                        <td>{{i.nearby}}</td>
+                        <td>{{i.community}}</td>
+                        <td>{{i.decoration}}</td>
+                        <td>{{i.elevator}}</td>
+                        <td>{{i.elevatorNum}}</td>
+                        <td>{{i.ownership}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" style="margin-top: 10px; margin-left: 400px; padding: 2rem 1rem; ">
+                <ul class="pagination">
+                    {% if page > 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('func.data_query', page=page-1) }}">上一页</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">上一页</a>
+                        </li>
+                    {% endif %}
+                    {% if page <= 4 %}
+                        {% for p in range(1, page + 4) %}
+                            {% if p == page %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="{{ url_for('func.data_query', page=p) }}">{{ p }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% elif page >= (total_pages - 3) %}
+                        {% for p in range(total_pages - 6, total_pages + 1) %}
+                            {% if p == page %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="{{ url_for('func.data_query', page=p) }}">{{ p }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for p in range(page - 2, page + 3) %}
+                            {% if p == page %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ p }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="{{ url_for('func.data_query', page=p) }}">{{ p }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ url_for('func.data_query', page=total_pages) }}">{{ total_pages }}</a></li>
+                    {% endif %}
+
+                    {% if page < total_pages %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('func.data_query', page=page + 1) }}">下一页</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">下一页</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+<!--引入layui的js库-->
+<script src="{{ url_for('static',filename = 'layui/layui.js') }}"></script>
+<script>
+    layui.use(["table","laypage"],function () {
+        var table = layui.table; //获得LayUI数据表格模块
+        var laypage = layui.laypage; //获得LayUI分页模块
+        table.render();
+    })
+</script>
+{% endblock %}
+

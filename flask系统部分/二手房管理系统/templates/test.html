@@ -1,0 +1,121 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>SH-Analysis 二手房数据网站登陆注册界面</title>#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/bootstrap.min.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/style.css') }}">#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename = 'iconfont/iconfont.css') }}">#}
+{#    <script src="{{ url_for('static',filename = 'js/jquery.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static',filename = 'js/popper.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static',filename = 'js/bootstrap.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static',filename = 'js/register1.js') }}"></script>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#    <!--logo标志-->#}
+{#    <nav class="navbar navbar-light bg-light">#}
+{#        <a class="navbar-brand" href="#">#}
+{#            <img src="{{ url_for('static',filename = 'images/logo.png') }}" width="80" height="50" class="d-inline-block align-top" alt="" >#}
+{#            SH-Analysis#}
+{#        </a>#}
+{#    </nav>#}
+{#    <!--导航栏-->#}
+{#    <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+{#        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">#}
+{#            <span class="navbar-toggler-icon"></span>#}
+{#        </button>#}
+{#        <div class="collapse navbar-collapse" id="navbarNavDropdown">#}
+{#            <ul class="navbar-nav">#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><h1>首页 <span>  || </span></h1></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><h1>二手房数据查询 <span>  ||</span></h1></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><h1>二手房数据分析 <span>  ||</span></h1></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#"><h1>二手房数据预测 <span>  || </span></h1></a>#}
+{#                </li>#}
+{#                <li class="nav-item dropdown">#}
+{#                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                        <h1>个人中心 <span>  || </span></h1>#}
+{#                    </a>#}
+{#                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">#}
+{#                        <a class="dropdown-item" href="#">个人信息</a>#}
+{#                        <a class="dropdown-item" href="#">修改资料</a>#}
+{#                        <a class="dropdown-item" href="#">注销</a>#}
+{#                    </div>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+{#    </nav>#}
+{#    <div class='container' id='container'>#}
+{#        <div class="form-container sign-up-container">#}
+{#        <!-- 注册 -->#}
+{#        <form name="form_reg" id="form_reg" method="POST">#}
+{#            <h2><b>SH-Analysis</b></h2>#}
+{#            <h4>用户注册</h4>#}
+{#            <div class="social-container">#}
+{#                <a href="https://im.qq.com/index/" class="social"><i class="iconfont icon-qq"></i></a>#}
+{#                <a href="https://wx.qq.com/" class="social"><i class="iconfont icon-weixin"></i></a>#}
+{#                <a href="https://weibo.com/signup/signup.php" class="social"><i class="iconfont icon-weibo-copy"></i></a>#}
+{#                <a href="https://github.com/signup" class="social"><i class="iconfont icon-github"></i></a>#}
+{#            </div>#}
+{#            <span>您可以选择以上几种方式注册一个您的账户!</span>#}
+{#            <input type="text" name="username" placeholder="用户名">#}
+{#            <input type="password" name="password" placeholder="密码">#}
+{#            <input type="password" name="password_confirm" placeholder="确认密码">#}
+{#            <input type="email" name="email" placeholder="邮箱">#}
+{#            <small id="emailHelp" class="form-text text-muted">我们不会把邮箱用于其他账户</small>#}
+{#            <button id="send_code">发送验证码</button>#}
+{#            <input type="text" name="captcha" placeholder="验证码">#}
+{#            <button id="register_SH">注册</button>#}
+{#        </form>#}
+{#        </div>#}
+{#        <div class="form-container sign-in-container">#}
+{#            <!-- 登陆 -->#}
+{#            <form name="form_log" id="form_log" action="" method="POST">#}
+{#                <h2><b>SH-Analysis</b></h2>#}
+{#                <h4>用户登陆</h4>#}
+{#                <div class="social-container">#}
+{#                    <a href="https://im.qq.com/index/" class="social"><i class="iconfont icon-qq"></i></a>#}
+{#                    <a href="https://wx.qq.com/" class="social"><i class="iconfont icon-weixin"></i></a>#}
+{#                    <a href="https://weibo.com/login.php" class="social"><i class="iconfont icon-weibo-copy"></i></a>#}
+{#                    <a href="https://github.com/login" class="social"><i class="iconfont icon-github"></i></a>#}
+{#                </div>#}
+{#                <span>您可以选择以上几种方式登陆您的账户!</span>#}
+{#                <input type="text" placeholder="用户名">#}
+{#                <input type="password" placeholder="密码">#}
+{#                <a href="#">忘记密码？</a>#}
+{#                <button id="login_SH" >登陆</button#}
+{#            </form>#}
+{#        </div>#}
+{#        <!-- 侧边栏内容 -->#}
+{#        <div class="overlay-container">#}
+{#            <div class="overlay">#}
+{#                <div class="overlay-panel overlay-left">#}
+{#                    <h1>已有帐号？</h1>#}
+{#                    <p>亲爱的新用户快快点我去进行登陆吧。</p>#}
+{#                    <button class='ghost' id="signIn">登陆</button>#}
+{#                </div>#}
+{#                <div class="overlay-panel overlay-right">#}
+{#                    <h1>没有帐号？</h1>#}
+{#                    <p>点击注册去注册一个属于你的账号吧。</p>#}
+{#                    <button class='ghost' id="signUp">注册</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <script src="{{ url_for('static',filename = 'js/index.js') }}"></script>#}
+{#</body>#}
+{#<div id="footerID" class="footer" style="background-color: #ffffff">#}
+{#	<p>DESIGN IN SDNU </p>#}
+{#</div>#}
+{#</html>#}
+{##}
+{##}
+{##}

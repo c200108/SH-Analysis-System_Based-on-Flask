@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-数据预测{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="first">
+            <div class="alert alert-info" role="alert" style="width: 125px; height: 45px; text-align: center; margin-top: 20px">
+                <h5><strong>方法简介</strong></h5>
+            </div>
+            <div class="card" ><div style="text-indent:2em">根据挖掘目标和数据形式可以建立分类与预测、聚类分析、关联规则、时序模型、离群点检测等模型</div>
+                <div style="text-indent:2em">其中对数据做预测是本网站一个重要的功能。<br></div>
+                <ul>
+                    <li><b>"干净"数据集的获得：</b>为了挖掘原始数据中的特征，从中提取有用的信息，同时去除无用的信息和噪声，使得机器学习模型更加准确地预测未知数据，通常要对数据做特征工程，它包括特征选择、特征提取、特征构造等技术.一个好的特征工程可以提高模型的精度，缩短训练时间，降低过拟合风险等。因此，特征工程也被视为机器学习中最具挑战和最有价值的部分之一。<br>
+                        特征工程可以通过各种方法来完成:数据清洗（缺失值、异常值、重复值等处理）、特征缩放（将特征进行归一化或标准化）、特征编码（将离散型数据转化为数值型数据，常用的方法包括OneHotEncoder和LabelEncoder）、特征降维等。
+                    </li>
+                    <li><b>建立算法模型,将“干净的数据集”分为训练集与测试集分别对算法模型训练并测试</b>
+                        <ul>常用的算法模型有:
+                            <li>线性回归——适用于解决连续值</li>
+                            <li> 预测问题逻辑回归——适用于二分类问题</li>
+                            <li>决策树——适用于非线性问题</li>
+                            <li>支持向量机(SVM)——适用于小样本数据</li>
+                            <li>K近邻(KNN)——适用于数据密集区域</li>
+                            <li>梯度提升树(GBDT)——适用于弱分类器的集成学习</li>
+                            <li>神经网络——适用于复杂的非线性问题等</li>
+                        </ul>
+                    </li>
+                    <li><b>将需要预测的数据按照格式整理为符合格式的数据集，并输入到模型中，然后输出预测结果</b></li>
+                    <li><b>分析预测结果以及模型的性能。</b>可以使用各种回归指标，如均方根误差（RMSE）、平均绝对误差（MAE）等，来评估模型的性能。还可以使用可视化工具来分析模型的性能和预测结果。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="">
+            <div class="alert alert-info" role="alert" style="width: 125px; height: 45px; text-align: center; margin-top: 20px">
+                <h5><strong>房价预测</strong></h5>
+            </div>
+            <div class="card mb-3" style="max-width: 1200px;">
+                <div class="row no-gutters">
+                    <div class="col-md-3" style="margin-top: 50px;margin-left: 20px">
+                        <img src="{{ url_for('static',filename='images/线性回归宣传图.jfif') }}" class="card-img" style="width: 300px;height: 300px">
+                    </div>
+                    <div class="col-md-8" style="margin-top: 15px ;margin-left: 50px">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>线性回归模型预测</b></h5>
+                            <p class="card-text" style="text-indent:2em">
+                                线性回归模型是一种广泛使用的统计学习方法，其主要作用是预测连续变量的值。<br>
+                                优点有： 1、简单易懂，易于实现和解释，具有较高的可解释性；
+                                2、预测结果具有较高的准确性和稳定性，适用于预测连续变量的值；
+                                3、对于数据量较大、特征较少的数据集，线性回归模型的效果通常较好。<br>
+                                缺点有：
+                                1、线性回归模型对数据的假设比较严格，数据需要满足独立同分布的假设；
+                                2、线性回归模型对异常值比较敏感，需要进行数据清洗和异常值处理；
+                                3、线性回归模型在处理非线性问题上效果不佳。
+                            <ul>
+                                线性回归模型主要有以下几种：
+                                <li>简单线性回归</li>
+                                <li>岭回归</li>
+                                <li>Lasso回归</li>
+                                <li>弹性网络回归</li>
+                                <li>贝叶斯岭回归</li>
+                                <li>最小回归角回归</li>
+                                <li>偏最小二乘法回归</li>
+                                <li>分位数回归</li>
+                            </ul>
+                            <div style="text-indent: 2em">本网站采用了一元线性回归模型和多元线性回归模型从面积、房间数量、装修情况、楼型、地区、电梯、房屋性质等角度对房价做出预测，但由于线性回归模型在自变量取值过小或过大时拟合度不是特别好，可能会造成预测数值偏小或偏大</div>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="">
+                                <a href="http://127.0.0.1:5000/data/forecast/linear" target="_blank">点击这里去体验一下吧</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3" style="max-width: 1200px;">
+                <div class="row no-gutters">
+                    <div class="col-md-3" style="margin-top: 50px;margin-left: 20px">
+                        <img src="{{ url_for('static',filename='images/KNN宣传图.jpg') }}" class="card-img" style="width: 300px;height: 300px">
+                    </div>
+                    <div class="col-md-8" style="margin-top: 15px ;margin-left: 50px">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>KNN模型预测</b></h5>
+                            <p class="card-text" style="text-indent:2em">
+                                K最近邻（K-Nearest Neighbors，KNN）是一种监督学习算法，用于分类和回归问题。它的基本思想是对于一个新的输入数据点，通过在训练集中查找与其最相似的k个数据点（即“最近邻”），来预测其类别或属性。<br>
+                                优点有：
+                                1、简单易懂：KNN算法非常容易理解和实现，只需要计算距离和取最近邻即可。
+                                2、非参数化：KNN是一种非参数化算法，不需要假设数据的分布形式，可以适用于各种数据类型和分布。
+                                3、适用性广泛：KNN算法可以用于分类和回归问题，也可以处理多分类和多标签问题。
+                                4、准确性较高：在一些数据集上，KNN算法可以获得较高的准确率。<br>
+                                缺点有：
+                                1、计算复杂度高：在训练阶段，KNN需要计算每个数据点之间的距离，计算复杂度为O(N^2)，在测试阶段，需要对每个测试数据点进行距离计算和排序，计算复杂度为O(KNlogN)，当数据量很大时，计算时间会很长。
+                                2、存储空间大：KNN需要将所有训练数据存储在内存中，当数据量很大时，需要大量的存储空间。非常依赖于距离度量：KNN算法的性能非常依赖于距离度量方法的选择。
+                            <ul>
+                                KNN模型的作用包括：
+                                <li>分类：KNN可以用于分类问题，例如识别数字、图像、语音等。</li>
+                                <li>回归：KNN可以用于回归问题，例如预测房价、股票价格等。</li>
+                                <li>推荐系统：KNN可以用于推荐系统中，根据用户历史行为和兴趣，预测其可能感兴趣的物品。</li>
+                                <li>数据压缩：KNN可以用于数据压缩，将大量数据点压缩成少量代表性的数据点。</li>
+                            </ul>
+                            本网站运用了KNN模型的回归作用，从面积、房间数量、装修情况、楼型、地区、电梯、房屋性质、楼层、梯户比例等角度对二手房房价做出预测，相较于简单线性回归模型对极值的问题容易欠拟合，KNN通过计算各数据点距离、取相近邻并分类使得数据两端极值拟合度尚可，但由于特征数量较多，KNN模型复杂度较高，所以预测需要时间较长
+                            </p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="">
+                                <a href="http://127.0.0.1:5000/data/forecast/knn" target="_blank">点击这里去体验一下吧</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

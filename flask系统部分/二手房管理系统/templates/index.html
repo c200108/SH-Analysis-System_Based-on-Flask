@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-首页{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container-index">
+    <div class="jumbotron" style="width: auto; height: 330px; margin-top: 15px; padding: 1rem 2rem;">
+        <h1 class="display-4" >HELLO , SH-Analysis✨</h1>
+        <p class="lead">这是一个二手房数据分析网站🖥</p>
+        <hr class="my-4">
+        <b>网站大致提供三个功能：特定数据查询⚙，数据可视化展示🖼，数据趋势预测🔮。</b>
+        <p>在这里你可以查询各地二手房的详情信息，本网站也会提供各地二手房数据统计图，并根据您的需要进行展示，然后本网站还可以对二手房房价未来趋势做预测。</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ url_for('func.data_query') }}" role="button">了解更多</a>
+        </p>
+    </div>{# 大屏展示块 #}
+    <div class="media">{# 图文混排 #}
+        <div class="bd-example" style="width: 500px;height: 400px">
+        <div class="alert alert-primary" role="alert" style="width: 150px; height: 50px; text-align: center">
+            <h5><strong>二手房示例</strong></h5>
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">{# 轮播页码效果 #}
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">{# 轮播图片展示 #}
+                <div class="carousel-item active">
+                    <a href="https://wf.lianjia.com/ershoufang/103124079075.html" target="_blank">
+                        <img src="{{ url_for('static',filename = 'images/sh-wf-example.jpg') }}" class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h6 style="color: #ff0000">智群古德近，电梯三居室，全明户型 楼层好</h6>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://wf.lianjia.com/ershoufang/103124231516.html" target="_blank">
+                        <img src="{{ url_for('static',filename = 'images/sh-wf-example2.jpg') }}" class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h6 style="color: #ff0000">上城佳乐家近，近200平的单位房，停车免费，有钥匙</h6>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://wf.lianjia.com/ershoufang/103124056455.html" target="_blank">
+                        <img src="{{ url_for('static',filename = 'images/sh-wf-example3.jpg') }}" class="d-block w-100" alt="...">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h6 style="color: #ff0000">万达隔壁 精装五室 小高层上下两层 带两个地下室</h6>
+                    </div>
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>{# 轮播按钮效果 #}
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div>
+        <div class="contaier-index-left" style="margin-top: 30px">
+            <div class="alert alert-info" role="alert" style="width: 150px; height: 50px; text-align: center">
+                <h5><strong>二手房讯息</strong></h5>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h6>最新消息</h6>
+                    <h6><b><a href="http://www.ce.cn/xwzx/gnsz/gdxw/202302/14/t20230214_38390935.shtml" target="_blank">多地持续优化房地产调控政策 部分城市二手房市场现回暖迹象</a></b></h6>
+                    <h6><b><a href="http://www.ce.cn/cysc/fdc/fc/202302/16/t20230216_38395322.shtml" target="_blank">多地推行二手房“带押过户” 专家称便利交易勿忘风险</a></b></h6>
+                    <h6><b><a href="http://www.ce.cn/cysc/fdc/fc/202302/16/t20230216_38396660.shtml" target="_blank">1月新房和二手房环比上涨城市增多 业内：一线城市迎“小阳春”</a></b></h6>
+                    <h6><b><a href="https://news.sina.com.cn/o/2022-12-26/doc-imxxymic1277970.shtml" target="_blank">2022地产十大政策：全面松绑，需求、供给齐发力</a></b></h6>
+                </div>
+            </div>
+            <div class="alert alert-warning" role="alert" style="width: 150px; height: 50px; text-align: center; margin-top: 20px">
+                <h5><strong>词云展示</strong></h5>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ url_for('static',filename='images/潍坊二手房词云图.png') }}" alt="潍坊二手房词云——高频词汇汇总" style="width: 330px; height: 420px; margin-left: 50px">
+                </div>
+            </div>
+        </div>
+    </div>{# 轮播图 #}
+        <div class="media-body" style="margin-left: 50px; margin-right: 10px ;margin-top: 5px">
+            <div class="alert alert-secondary" role="alert" style="width: 125px; height: 50px; text-align: center">
+                <h5><strong>政策公告</strong></h5>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <b><i>最高法提依法遏制“借名买房”“法拍房”炒作</i></b>
+                    <p></p>
+                    <p><i>全国高级法院院长会议日前举行，最高人民法院提出依法审理教育、医疗、养老、育幼、社会保障等民生领域案件，加大对高校毕业生、农民工、灵活就业人员等权益保护力度，维护劳动者公平就业权利。要落实“房子是用来住的、不是用来炒的”定位，依法遏制“借名买房”“法拍房”炒作。</i></p>
+                    <p>点评：限购、限贷政策是阻碍一部分拥有多套房产人群的重要限制，而通过“借名买房”可以有效的规避这一政策，但是也会存在较大的风险，那么最高法出台相关政策是希望一部分通过规避政策买房人群谨慎自己的购房行为，法律对其行为是不支持的。“法拍房”也是类似情况，各地也相继出台“法拍房”的限购政策，最高法也重生房子的居住属性，以后为规避限购购买此类房产的人群也需要正视自身的购房动机。</p>
+                    ——2022.1.18
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p><b><i>5年期以上LPR 21个月以来首次下调</i></b></p>
+                    <p><i>1月20日，央行最新一期LPR宣布降息。此次LPR利率中，5年期利率下调了5个基点，为4.60%，这是21个月以来首次出现5年期LPR下调的情况。以100万贷款金额、30年期等额本息还款的按揭贷款为例，在利率调整前，LPR为4.65%，此时月供额为5156元。而此次利率调整后，LPR为4.60%，此时月供额为5126元，月供额减少了约30元。</i></p>
+                    <p>点评：房贷利率的下调将会降低购房者的成本支出，有利于需求的释放。单次的LPR的调整对购房者持有成本的减少是相对较少的，不过21个月首次下调LPR是释放了降息的信号，对楼市将是个长期的利好政策。</p>
+                    ——2022.1.20
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p><b><i>央行发布重磅数据！2021年末房地产贷款余额52万亿，个人住房贷款余额增速回落</i></b></p>
+                    <p><i>2021年末，全国房地产贷款余额52.2万亿元，同比增长7.9%，增速比9月末提高了0.3个百分点，其中四季度房地产贷款新增7734亿元，同比多增2020亿元，较三季度多增1578亿元。房地产销售、购地、融资等行为已逐步回归常态，市场预期稳步改善。</i></p>
+                    <p>点评：四季度房贷增速提升，体现出前期的金融政策已经向宽松转向。今年全国二手房市场相对低迷和各个城市调控政策相关，但信贷政策相对从紧也密不可分，因此，四季度开始的金融政策逐步放松有利于未来市场的交易。</p>
+                    ——2022.1.30
+                </div>
+            </div>
+        </div>{# 文本 #}
+    </div>
+</div>
+{% endblock %}
+

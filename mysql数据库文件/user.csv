@@ -1,0 +1,4 @@
+"id","username","password","email","jointime","phone","address","sex","age"
+"1","root","pbkdf2:sha256:260000$jre11YU7UhRbsk7N$a21f16c0562ef1b9edc6c9eb3c42567995a42364b60a5cfb6316fd26c4127857","2547985435@qq.com","16/2/2023 23:10:37","19861830976","山东省济南市长清区大学路一号山东师范大学长清校区","男","21"
+"2","littlefox","pbkdf2:sha256:260000$oYdA1JDBfhja0qLq$f04cd26133ea120bf453001d4c7eff9ccc9a26b9159c3bb8997fa51f85ffda77","1716311167@qq.com","17/2/2023 13:40:00",,,,
+"3","beyond","pbkdf2:sha256:260000$mYQ9kxir6YHI0Xty$63989282cd145deb8cfed84ddceba0490d08ffc94d9e291bf439d2800f78f52f","1941450030@qq.com","5/3/2023 13:40:56",,,,

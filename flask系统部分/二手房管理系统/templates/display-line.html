@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-二手房数据折线图表{% endblock %}
+
+{% block head %}
+    <!--POP弹窗-->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+{% endblock %}
+
+{% block body_display %}
+    <div class="container-fluid">
+        <div class="title"  style="padding: 2rem 1rem">
+            <h1 class="text-center display-4"><strong>潍坊二手房各数据项关系图形化线性展示</strong></h1>
+        </div>
+
+        <div class="container card">
+            折线图用于显示数据在一个连续的时间间隔或者时间跨度上的变化，它的特点是反映事物随时间或有序类别而变化的趋势。 在折线图中可以清晰的看出数据递增还是递减、增减的速率、增减的规律和峰值特征。
+            折线图常用来分析数据随时间的变化趋势，也可用来分析多组数据随时间变化的相互作用和相互影响。在折线图中横轴通常用来表示时间跨度且时间间隔相同，纵轴表示不同时间时刻的数据值。
+        </div>
+        <div class="container-fluid" style="margin-top: 50px">
+            <div class="media" style="margin-left: 50px">
+                <div class="alert alert-danger" role="alert" style="width: 230px; height: 65px; text-align: center;margin-top: 20px;margin-left: 20px">
+                    <h2>叠加折线图</h2>
+                    <div class="btn" style="margin-top: 20px">
+                        <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="多折线同一坐标系（地区——装修——房价平均值）" data-content="该图表属于折线图，同时在一个坐标系中按照不同的颜色绘制了四条折线，横坐标为潍坊市八个县市区，
+                纵坐标为在某地区与某装修情况下的取房价平均值，该图表中可以看到毛坯房在所有县市区与各类装修中房价平均值最高，奎文区、寿光市、高新技术产业开发区这三地区房价平均值较其他地区更高">
+                            点击查看该柱状图介绍
+                        </button>
+                    </div>
+                </div>
+                <div class="media-body" style="margin-left: 60px;margin-top: 30px;margin-right: 400px">
+                    <div class="card">
+                        <h5>描述</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="line" class="container" style="width:1200px; height:800px;margin-top: 30px"></div>
+    </div>
+
+    <script type="text/javascript" charset="UTF-8">
+    let line = new Array();
+    line = {{ line|safe }};
+    console.log(line)
+    //叠加折线图
+    let display_line = function () {
+        let main = echarts.init(document.getElementById("line"));
+        let option = {
+            title: {
+                text: '房价平均值'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['其他', '毛坯', '简装', '精装']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                },
+                textStyle: {
+                    color: '#000',
+                    fontSize: 20
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['坊子区', '奎文区', '寒亭区', '寿光市', '潍城区', '经济技术开发区', '青州市', '高新技术产业开发区'],
+                axisLabel:{
+                    show:true,
+                    interval:0,
+                    textStyle:{
+                        color: '#000',
+                        fontSize:'18',
+                        itemSize:''
+                    }
+                },
+            },
+            yAxis: {
+                axisLabel: {
+                    formatter: '{value}'+' 万元',
+                    textStyle:{
+                                color: '#000',
+                                fontSize:'20',
+                                itemSize:''
+                    }
+                }
+            },
+            series: [
+                {
+                    name: '其他',
+                    type: 'line',
+                    {#stack: 'Total',#}
+                    data: line[0]
+                },
+                {
+                    name: '毛坯',
+                    type: 'line',
+                    {#stack: 'Total',#}
+                    data: line[1]
+                },
+                {
+                    name: '简装',
+                    type: 'line',
+                    {#stack: 'Total',#}
+                    data: line[2]
+                },
+                {
+                    name: '精装',
+                    type: 'line',
+                    {#stack: 'Total',#}
+                    data: line[3]
+                }
+            ]
+        };
+        main.setOption(option,true);
+        }
+        display_line()
+    </script>>
+{% endblock %}

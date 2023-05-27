@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>SH-Analysis二手房数据网站-用户中心</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container " style="display: flex; flex-direction: column; margin-top: 30px ;text-align:center;">
+        <div class="container" style="display: flex; flex-direction: column">
+            <div class="card">
+                <div class="card-header">
+                    <h5><strong>用户基本信息</strong></h5>
+                </div>
+                <div class="card-body">
+                    <p>用户名: {{ user.username }}</p>
+                    <p>性别: {{ user.sex }}</p>
+                    <p>年龄: {{ user.age }}</p>
+                    <p>邮箱: {{ user.email }}</p>
+                    <p>手机号: {{ user.phone }}</p>
+                    <p>地址: {{ user.address }}</p>
+                    <p>注册时间: {{ user.jointime }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="display: flex; flex-direction: column; margin-top: 30px">
+            <div class="card">
+                <div class="card-header">
+                    <h5><strong>用户信息修改</strong></h5>
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        <p>用户名：<input type="text" name="username" id="username" placeholder="该内容不可为空"></p>
+                        <p>手机号：<input type="text" name="phone" id="phone" placeholder="11位数字" style="width: 120px"></p>
+                        <p>性别：<select name="sex">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                            </select>
+                        </p>
+                        <p>年龄：<input type="text" name="age" id="age" style="width: 50px"></p>
+                        <p>通讯地址：<input type="text" name="address" id="address" placeholder="省市县区街道镇村" style="width: 240px"></p>
+                        <button type="submit">提交修改</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

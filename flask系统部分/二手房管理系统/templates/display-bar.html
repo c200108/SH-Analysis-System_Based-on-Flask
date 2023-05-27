@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-二手房数据柱状图表{% endblock %}
+
+{% block head %}
+    <!--POP弹窗-->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+{% endblock %}
+
+{% block body_display %}
+    <div class="container-fluid" >
+        <div class="title" style="padding: 2rem 1rem">
+            <p class="text-center display-4"><strong>潍坊二手房各数据项关系图形化柱形展示</strong></p>
+        </div>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    柱状图(bar chart)，是一种以长方形的长度为变量的表达图形的统计报告图，由一系列高度不等的纵向条纹表示数据分布的情况，用来比较两个或以上的价值（不同时间或者不同条件），只有一个变量，通常利用于较小的数据集分析。柱状图亦可横向排列，或用多维方式表达。
+                    <ul>
+                        <b>柱状图有哪些特点呢？</b>
+                        <li>明确的比较能力：柱状图以直观的方式呈现数据，让您能够轻松比较不同类别或时间段之间的数据差异。柱子的高度和长度可以用来表示数量或比例关系，因此柱状图是一种非常适合比较的图表类型。</li>
+                        <li>易于理解：由于柱状图的基本组成部分（包括横轴、纵轴和柱子）都很直观，即使是没有经验的人也可以很容易地理解它。</li>
+                        <li>易于绘制和制作：与其他复杂的图表类型相比，柱状图非常容易绘制和制作。大多数数据分析工具和软件都提供了柱状图的绘制功能，而且柱状图的数据结构也非常简单，只需要提供相应的数据就可以绘制出来。</li>
+                        <li>可以显示多个变量：柱状图可以用于显示多个变量，例如在分组柱状图中，可以用不同颜色的柱子表示不同类别的数据。</li>
+                        <li>适用于各种数据类型：柱状图不仅适用于数量数据，还可以用于展示质量、时间和比例等类型的数据。</li>
+                        <b>对柱状图做可视化主要从以下三个方面考虑：</b>
+                        <li>颜色应用：数据分离单独着色以及品牌 logo 颜色的应用</li>
+                        <li>条纹及形状个性化设置</li>
+                        <li>去边界及坐标轴</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin-top: 50px">
+            <!--基础柱状图区域-->
+            <div class="base-bar" style="margin-left: 100px;margin-top: 50px">
+                <div class="media" style="margin-left: 50px">
+                    <div class="alert alert-danger" role="alert" style="width: 230px; height: 65px; text-align: center">
+                        <h2>基础柱状图</h2>
+                        <div class="btn" style="margin-top: 20px">
+                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="潍坊各县市区挂牌出售二手房的数量" data-content="纵坐标为二手房挂牌现售数量，横坐标为潍坊市的八个县市区，由于数据收集范围有限，诸城、高密、安丘、昌邑、昌乐等地方二手房信息未收录。
+                            图中可以看出所售二手房数量，除青州市外各地区大致相等，潍城挂牌出售数量最多。">
+                                点击查看该柱状图介绍
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-body" style="margin-left: 100px;margin-top: 30px;margin-right: 600px">
+                        <div class="card">
+                            <h5>一种最简单的柱状图，最常用来对比数值的大小，使用非常广泛，包含信息较少，适合反应整体信息</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="bar"  style="width:1200px; height:600px; margin-left: 300px"></div>
+            </div>
+            <!--折柱混合图区域-->
+            <div class="bar-line" style="margin-left: 100px;margin-top: 50px">
+                <div class="media" style="margin-left: 50px">
+                    <div class="alert alert-danger" role="alert" style="width: 230px; height: 65px; text-align: center">
+                        <h2>折柱混合图</h2>
+                        <div class="btn" style="margin-top: 20px">
+                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="折线与柱形混合图表（地区—电梯—二手房数量）" data-content="该图横坐标为潍坊市八个县市区，纵坐标分为两部分，左边纵坐标为有电梯、无电梯分别的二手房数量，与该图表中的柱形部分对应
+                                右边纵坐标为有电梯和无电梯总共的数量，与该图表中的折线部分对应。从图中可以明显看出坊子区与青州市所售二手房大多无配套电梯，而高新技术产业开发区所售二手房大多有配套电梯,一般而言，楼层高度与楼层数往往是一栋楼房是否配套电梯的主要原因。">
+                                点击查看该柱状图介绍
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-body" style="margin-left: 100px;margin-top: 30px;margin-right: 600px">
+                        <div class="card">
+                            <h5>折线图与柱状图叠加的图表，图表的右上角有数据显示、切换折线图、切换柱状图、刷新与下载等配置工具。该类图标能够将多组数据作对比，可以非常直观的展示数据与数据的比拟</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="bar-line"  style="width:1400px; height:750px; margin-left: 300px;margin-top: 50px"></div>
+            </div>
+            <!--大数据量状图区域-->
+            <div class="bigdata-bar" style="margin-left: 100px;;margin-top: 50px">
+                <div class="media">
+                    <div class="alert alert-danger" role="alert" style="width: 250px; height: 65px; text-align: center">
+                        <h2>大数据量状图</h2>
+                        <div class="btn" style="margin-top: 20px">
+                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="较大数据量统计（小区——总价）" data-content="纵坐标为二手房所售总价，横坐标为具体小区名称，横坐标下方为区域缩放功能区，存在较多数据时可以用该区域快速定位某个小区。数据集总共包含18000条二手房信息，
+                               其中便包含房屋总价与小区名称，通过该图表可以在较小的图形范围内容纳大量的信息，便于宏观整体查看某类数据。对于过高房价的小区也可以一目了然，价格分布更加直观。">
+                                点击查看该柱状图介绍
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-body" style="margin-left: 100px;margin-top: 30px;margin-right: 600px">
+                        <div class="card">
+                            <h5>一种用于处理展示较大数据量的柱状图，与基础柱状图类似，不过数据方面，基础柱状图因展示区域限制无法容纳展示过多数据量，大数据量柱图可以容纳并展示几十万，几百万以上的数据，配合区域缩放工具可以精准定位某一数据。</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="bigdata-bar"  style="width:1600px; height:800px; margin-left: 300px;margin-top: 50px"></div>
+            </div>
+            <!--3D柱形图区域-->
+            <div class="3D-bar" style="margin-top: 50px;margin-left: 100px">
+                <div class="media" >
+                    <div class="alert alert-primary" role="alert" style="width: 210px; height: 65px; text-align: center">
+                            <h2>3D柱形图</h2>
+                        <div class="btn" style="margin-top: 20px">
+                            <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="3D显示（地区—楼层—房屋单价）" data-content="该图标为3D图表，共有X、Y、Z三个特征值，其中X轴为楼层，包括低楼层、中楼层与高楼层（以及整栋楼所有楼层数）；Y轴为潍坊市八个县市区；
+                            Z轴为二手房所售单价。该图总共96种楼层类型，八个县市区，每个3D柱的Z值为该县市区和该楼层类型下的所有二手房单价的平均值，由于数量太大因而单价取各区间的平均值">
+                                点击查看该柱状图介绍
+                            </button>
+                        </div>
+                    </div>
+                    <div class="media-body" style="margin-left: 100px;margin-top: 30px;margin-right: 500px">
+                        <div class="card">
+                            <h5>因3D渲染速度较慢，页面载入时间可能较长</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="3d-bar"  style="width:2000px; height:1000px ;margin-top: 50px"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" charset="UTF-8">
+        let kv = new Array();//建立新数组用于接收数据
+        kv = {{ datalist1 | safe }};//基础柱状图后端数据导入
+        let bar_line = new Array();
+        bar_line = {{ bar_line }};//折柱混合图后端数据传入
+        let bigData = new Array();
+        bigData = {{ bigData|safe }};//大数据量柱图后端数据传入
+        let bar_3d = new Array();
+        let bar_3d_data = new Array();
+        bar_3d = {{ bar_3d|safe }};//3d柱状图后端类名数据传入
+        bar_3d_data = {{ bar_3d_data|safe }};//3d柱状图后端数据传入
+        console.log(bar_3d)
+        console.log(bar_3d_data)
+        let test_name = new Array();
+        let test_value = new Array();
+        for(let logkey in kv){
+            //柱状图数据分类
+            test_name.push(logkey)
+            test_value.push(kv[logkey])
+        }
+        //基础柱状图
+        let display_bar = function(){
+            let main = echarts.init(document.getElementById("bar"));
+            let option = {
+                title: {
+                    text: '各县市区二手房数量',
+                    left: 10
+                },
+                xAxis: {
+                    type: 'category',
+                    data: test_name,
+                    axisLabel:{
+                        show:true,
+                        interval:0,
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'17',
+                            itemSize:''
+                        }
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel:{
+                        formatter: '{value}'+' 间',
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'20',
+                            itemSize:''
+                        }
+                    }
+                },
+                series: [{
+                    data: test_value,
+                    type: 'bar'
+                }
+                ]
+            };
+            main.setOption(option,true);
+        };
+        display_bar();
+        //折柱混合图
+        let display_bar_line = function () {
+            let main = echarts.init(document.getElementById("bar-line"));
+            let option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        crossStyle: {
+                            color: '#ff0000'
+                        }
+                    }
+                },
+                toolbox: {
+                    feature: {
+                        dataView: { show: true, readOnly: false },
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                legend: {
+                    data: ['有电梯','无电梯','有电梯+无电梯']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data:test_name,//地级市列表数据
+                        axisLabel:{
+                            show:true,
+                            interval:0,
+                            textStyle:{
+                                color: '#000',
+                                fontSize:'17',
+                                itemSize:''
+                            }
+                        },
+                        axisPointer: {
+                            type: 'shadow',
+                        }
+                    }
+                ],
+                yAxis: [
+                    {//y轴左边坐标含义（柱形）
+                        type: 'value',
+                        name:'有电梯、无电梯',
+                        min: 0,
+                        max: 3000,
+                        interval:600,
+                        nameTextStyle :{
+                            color: '#000',
+                            fontSize:'20',
+                            itemSize:''
+				        },
+                        axisLabel: {
+                            formatter: '{value}'+' 间',
+                            textStyle:{
+                                color: '#000',
+                                fontSize:'20',
+                                itemSize:''
+
+                            }
+                        }
+                    },
+                    {//y轴右边坐标含义（折线）
+                        type: 'value',
+                        name: '有电梯+无电梯',
+                        min: 0,
+                        max: 3000,
+                        interval: 600,
+                        nameTextStyle :{
+                            color: '#000',
+                            fontSize:'20',
+                            itemSize:''
+				        },
+                        axisLabel: {
+                            formatter: '{value}'+' 间',
+                            textStyle:{
+                                color: '#000',
+                                fontSize:'20',
+                                itemSize:''
+                            }
+                        }
+                    }
+                ],
+                series: [
+                    {//有电梯柱形图
+                        name: '有电梯',
+                        type: 'bar',
+                        //提示框文本
+                        tooltip: {
+                            valueFormatter: function (value) {
+                                return value + ' 间';
+                            }
+                        },
+                        data: bar_line[0]
+                            {#[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]//X轴在相应地级市条件下的有电梯二手房数据列表#}
+                    },
+                    {//无电梯柱形图
+                        name: '无电梯',
+                        type: 'bar',
+                        //提示框文本
+                        tooltip: {
+                            valueFormatter: function (value) {
+                                return value + ' 间';
+                            }
+                        },
+                        data: bar_line[1]
+                            {#[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]//X轴在相应地级市条件下的无电梯二手房数据列表#}
+                    },
+                    {//折线图
+                        name: '有电梯+无电梯',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        //提示框文本
+                        tooltip: {
+                            valueFormatter: function (value) {
+                                return value + ' 间';
+                            }
+                        },
+                        data: bar_line[2]
+                            {#[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]////X轴在相应地级市条件下的有+无电梯二手房数据列表#}
+                    }
+                ]
+            };
+            main.setOption(option,true);
+        }
+        display_bar_line()
+        //大数据量柱图
+        let display_bigdata_bar = function () {
+            let main = echarts.init(document.getElementById("bigdata-bar"))
+            {#const dataCount = 5e5;#}
+            {#const data = generateData(dataCount);#}
+            let option = {
+                title: {
+                    text: '小区—总价关系',
+                    left: 10
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: false
+                        },
+                        saveAsImage: {
+                            pixelRatio: 2
+                        }
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    bottom: 90
+                },
+                dataZoom: [
+                    {
+                        type: 'inside'
+                    },
+                    {
+                        type: 'slider'
+                    }
+                ],
+                xAxis: {
+                    data: bigData[1],
+                    silent: false,
+                    splitLine: {
+                        show: false
+                    },
+                    splitArea: {
+                        show: false
+                    },
+                    axisLabel:{
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'18',
+                            itemSize:''
+                        }
+                    }
+                },
+                yAxis: {
+                    splitArea: {
+                        show: false
+                    },
+                    axisLabel:{
+                        formatter: '{value}'+' 万元',
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'20',
+                            itemSize:''
+                        }
+                    }
+                },
+                series: [
+                    {
+                        type: 'bar',
+                        data: bigData[0],
+                        // Set `large` for large data amount
+                        large: true,
+                        tooltip: {
+                            valueFormatter: function (value) {
+                                return value + ' 万元';
+                            }
+                        }
+                    }
+                ]
+            };
+            main.setOption(option,true);
+        }
+        display_bigdata_bar()
+        //3D柱形图
+        let display_3d_bar = function () {
+            let main = echarts.init(document.getElementById("3d-bar"))
+            // prettier-ignore
+            var floor = bar_3d[1];
+            // prettier-ignore
+            var district = ['坊子区', '奎文区', '寒亭区', '寿光市', '潍城区', '经济技术开发区', '青州市', '高新技术产业开发区'];
+            // prettier-ignore
+            let option = {
+                tooltip: {},
+                visualMap: {
+                    max: 25000,
+                    inRange: {
+                        color: [
+                            '#313695',
+                            '#4575b4',
+                            '#74add1',
+                            '#abd9e9',
+                            '#e0f3f8',
+                            '#ffffbf',
+                            '#fee090',
+                            '#fdae61',
+                            '#f46d43',
+                            '#d73027',
+                            '#a50026'
+                        ]
+                    }
+                },
+                xAxis3D: {
+                    type: 'category',
+                    data: floor,
+                    axisLabel:{
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'18',
+                            itemSize:''
+                        }
+                    }
+                },
+                yAxis3D: {
+                    type: 'category',
+                    data: district,
+                    axisLabel:{
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'18',
+                            itemSize:''
+                        }
+                    }
+                },
+                zAxis3D: {
+                    type: 'value',
+                    axisLabel:{
+                        textStyle:{
+                            color: '#000',
+                            fontSize:'18',
+                            itemSize:''
+                        }
+                    }
+                },
+                grid3D: {
+                    boxWidth: 400,
+                    boxDepth: 60,
+                    viewControl: {
+                        // projection: 'orthographic'
+                    },
+                    light: {
+                        main: {
+                            intensity: 1.2,
+                            shadow: true
+                        },
+                        ambient: {
+                            intensity: 0.3
+                        }
+                    }
+                },
+                series: [
+                    {
+                        type: 'bar3D',
+                        barSize:3,
+                        data: bar_3d_data.map(function (item) {
+                            return {
+                                value: [item[1], item[0], item[2]]
+                            };
+                        }),
+                        shading: 'lambert',
+                        label: {
+                            fontSize: 16,
+                            borderWidth: 1
+                        },
+                        emphasis: {
+                            label: {
+                                fontSize: 20,
+                                color: '#900'
+                            },
+                            itemStyle: {
+                                color: '#900'
+                            }
+                        }
+                    }
+                ]
+            };
+            main.setOption(option,true);
+        }
+        display_3d_bar()
+
+    </script>
+{% endblock %}

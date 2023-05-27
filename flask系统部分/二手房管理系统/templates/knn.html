@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-K近邻模型预测{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+    <!--KNN算法模型区域-->
+    <div class="card border-success" style="margin-top: 50px; margin-bottom: 100px">
+        <div class="card-header"><b>K近邻模型预测(KNN)——自变量：面积、房间数量、装修情况、楼型、地区、电梯、房屋性质、楼层、梯户比例</b></div>
+        <div class="media" style="height: 600px">
+            <div class="contaier-index-left">
+                <img src="{{ url_for('static',filename='images/KNN模型预测效果图.png') }}" style="width:700px;height: 580px" >
+            </div>
+            <div class="media-body" style="margin-left: 15px">
+                <div class="alert alert-info" role="alert" style="width: 130px; height: 45px; text-align: center; margin-top: 20px">
+                    <h5><strong>信息输入</strong></h5>
+                </div>
+                <form class="layui-form" method="post" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">输入框</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="square_guess" id="square_guess" placeholder="面积（平方米）" autocomplete="off" class="layui-input"><br>
+                            <input type="text" name="dataSize_new_guess" id="dataSize_new_guess" placeholder="房间数量（1~20间）" autocomplete="off" class="layui-input" style="margin-top: 10px"><br>
+                            <div  style="margin-top: 10px">
+                                <b>装修情况：</b>
+                                <select name="decoration_guess">
+                                    <option value="其他">其他</option>
+                                    <option value="毛坯">毛坯</option>
+                                    <option value="简装">简装</option>
+                                    <option value="精装">精装</option>
+                                </select><br>
+                                <b>楼型：</b>
+                                <select name="type_guess"  style="margin-top: 10px">
+                                    <option value="塔楼">塔楼</option>
+                                    <option value="板楼">板楼</option>
+                                    <option value="板塔结合">板塔结合</option>
+                                    <option value="平房">平房</option>
+                                </select><br>
+                                <b>地区（潍坊县市区）：</b>
+                                <select name="district_guess"  style="margin-top: 10px">
+                                    <option value="坊子区">坊子区</option>
+                                    <option value="奎文区">奎文区</option>
+                                    <option value="潍城区">潍城区</option>
+                                    <option value="寒亭区">寒亭区</option>
+                                    <option value="寿光市">寿光市</option>
+                                    <option value="青州市">青州市</option>
+                                    <option value="经济技术开发区">经济技术开发区</option>
+                                    <option value="高新技术产业开发区">高新技术产业开发区</option>
+                                </select><br>
+                                <b>有无电梯：</b>
+                                <select name="elevator_guess"  style="margin-top: 10px">
+                                    <option value="有">有</option>
+                                    <option value="无">无</option>
+                                </select>
+                                <b style="margin-left: 10px">房屋性质：</b>
+                                <select name="ownership_guess"  style="margin-top: 10px">
+                                    <option value="商品房">商品房</option>
+                                    <option value="房改房">房改房</option>
+                                </select><br>
+                                <b >楼层要求：</b>
+                                <input type="text" name="floor_guess" id="floor_guess" placeholder="低/中/高" autocomplete="off" class="layui-input" style="margin-top: 10px; width: 150px">
+                                例：低楼层(共X层)<br>
+                                <b style="margin-top: 10px">梯户比例：</b>
+                                <input type="text" name="elevatorNum_guess" id="elevatorNum_guess" placeholder="X梯Y户" autocomplete="off" class="layui-input" style="margin-top: 10px; width: 100px">
+                                例：一梯两户<br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item"  style="margin-top: 20px">
+                        <div class="layui-input-block">
+                            <input type="submit" name="btn" id="btn" value="确认">
+                            <button type="reset" class="">重置</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-primary" style="margin-top: 20px; margin-right: 15px"><b>{{ knn }}</b></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

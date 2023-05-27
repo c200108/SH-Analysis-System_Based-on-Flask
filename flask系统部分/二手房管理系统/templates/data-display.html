@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-数据可视化展示{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=krWHtGvGQty5igndNNqgECGLOK1osloy"></script>
+    <script type=”text/javascript” src=”https://api.map.baidu.com/api?v=2.0&ak=krWHtGvGQty5igndNNqgECGLOK1osloy&s=1″></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container-display" style="margin-top: 30px">
+        <div class="alert alert-primary" role="alert" style="width: 190px; height: 50px; text-align: center">
+            <h5><strong>数据可视化简介</strong></h5>
+        </div>
+        <div class="card" style="margin-bottom: 30px">
+            <div class="card-body">
+                <p>数据可视化，是关于数据视觉表现形式的科学技术研究。人大脑的1/3是用来处理视觉信息的，因此数据可视化的运用，可以帮助人们更快速、方便地获取数据并理解隐藏在数字背后的信息。通过复杂的数据可视化，可以将错综复杂的数据建立起联系，从而发现规律的和特征，获得具有商业价值的信息。</p>
+                <p>数据可视化功能在很大程度上是依赖各类图表所完成的，因而可视化图表可以分为<b>分布型可视化图表类型、构成型可视化图表类型和联系型可视化图表类型</b>。
+                    分布型图表有代表性的是柱形直方图、散点图；构成型图表有代表性的是饼图，堆积图；联系型图表有代表性的是散点图</p>
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert" style="width: 130px; height: 50px; text-align: center">
+                <h5><strong>图表展示</strong></h5>
+        </div>
+        <div class="card" style="margin-bottom: 30px">
+            <div class="card-body">
+                <p>说到图表，大多数人脑子里都会浮现出 Excel 图表里的六大不老男神：柱状图、条形图、折线图、饼图、散点图、雷达图。 虽然图表界不断有小鲜肉冒出，比如树状图、箱线图等，但这六大基础图表的地位一直未被撼动。</p>
+                下面陈列的三个卡片提供了每种图表（柱状图、折线图、饼图、散点图）的简要介绍，网站针对统计得到的潍坊二手房各项数据，根据不同需要与实际情况对数据进行分组处理，并对每组数据作可视化处理来绘制图表，
+                以下卡片提供了各类图表的详情信息。
+            </div>
+        </div>
+        <!--卡片陈列-->
+        <div class="card-deck">
+            <div class="card border-primary" style="width: 18rem;">
+                <div class="card-header"><b>点击下方了解更多去看看吧！</b></div>
+                <img class="card-img-top" src="{{ url_for('static',filename='images/柱状图宣传图.jpg') }}" alt="Card image cap" style="height: 300px">
+                <div class="card-body">
+                    <h5 class="card-title"><p>柱状图</p></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">图表可视化展示</h6>
+                    <p class="card-text">该网页中包含四种不同类型柱状图：基础柱状图、折线柱形混合图、大数据量峰柱图、3D柱形图，从多个角度展示了各元素之间的数量关系</p>
+                    <a href="http://127.0.0.1:5000/data/display/bar" class="card-link" target="_blank">了解更多</a>
+                    <a href="http://127.0.0.1:5000/data/forecast" class="card-link">不感兴趣</a>
+                </div>
+            </div>
+            <div class="card border-warning" style="width: 18rem;">
+                <div class="card-header"><b>点击下方了解更多去看看吧！</b></div>
+                <img class="card-img-top" src="{{ url_for('static',filename='images/饼图宣传图.jpg') }}" alt="Card image cap" style="height: 300px">
+                <div class="card-body">
+                    <h5 class="card-title"><p>饼图</p></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">图表可视化展示</h6>
+                    <p class="card-text">该网页中包含两种不同类型饼图：基础饼图以及纹理饼图（多要素），从房屋朝向、楼型、户型、装修情况等角度作了可视化分析，饼图对于研究二手房非数值型数据占比具有很大作用</p>
+                    <a href="http://127.0.0.1:5000/data/display/pie" class="card-link" target="_blank">了解更多</a>
+                    <a href="http://127.0.0.1:5000/data/forecast" class="card-link">不感兴趣</a>
+                </div>
+            </div>
+            <div class="card border-success" style="width: 18rem;">
+                <div class="card-header"><b>点击下方链接去看看吧！</b></div>
+                <img class="card-img-top" src="{{ url_for('static',filename='images/折线图宣传图.jfif') }}" alt="Card image cap" style="height: 300px">
+                <div class="card-body">
+                    <h5 class="card-title"><p>折线图和散点图</p></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">图表可视化展示</h6>
+                    <p class="card-text">该网页中包含两种图表：折线图与散点图,其中折线图为叠加折线图，可以分析各地区二手房不同楼层与房屋单价之间的关系；散点图则采用了流式渲染与视觉映射效果展示了房屋面积与单价之间的数量分布</p>
+                    <a href="http://127.0.0.1:5000/data/display/line" class="card-link" target="_blank">折线图</a>
+                    <a href="http://127.0.0.1:5000/data/display/scatter" class="card-link" target="_blank">散点图</a>
+                    <a href="http://127.0.0.1:5000/data/forecast" class="card-link">不感兴趣</a>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+            <div class="alert alert-warning" role="alert" style="width: 130px; height: 50px; text-align: center;margin-top: 20px">
+                <h5><strong>地图预览</strong></h5>
+            </div>
+            <form>
+                <div style="margin-left: 100px">
+                    <h4 style='margin-left: 50px'>输入地点然后点击“地图查找”搜索，再点击地图地点获取相应位置信息</h4>
+                <label>输入地点：</label>
+                <input id='where' name='where' type='text' placeholder='请输入地址' style="margin-top: 20px">
+                <input id='but' type='button' value='地图查找' onClick='sear(document.getElementById("where").value);' style="margin-right: 30px">
+                显示位置：<input id='str' name='str' type='text' placeholder='显示位置信息' style="margin-top: 20px;width: 350px" >
+                </div>
+                <div style='margin:auto;width:1000px;height:750px;border:2px solid gray;margin-top:15px; margin-bottom:50px;' id='allmap'></div>
+            </form>
+
+
+        </div>
+    </div>
+<script type="text/javascript">
+    // GL版命名空间为BMapGL
+    // 按住鼠标右键，修改倾斜角和角度
+    var map = new BMapGL.Map("allmap");    // 创建Map实例
+    var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+    map.addControl(scaleCtrl);
+    var zoomCtrl = new BMapGL.ZoomControl();  // 添加缩放控件
+    map.addControl(zoomCtrl);
+    var cityCtrl = new BMapGL.CityListControl();  // 添加城市列表控件
+    map.addControl(cityCtrl);
+    map.setMapType(BMAP_EARTH_MAP);      // 设置地图类型为地球模式
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    map.centerAndZoom(new BMapGL.Point(116.331398,39.897445), 13);
+    var geoc = new BMapGL.Geocoder();
+    map.addEventListener('click', function(e){
+        var pt = e.latlng;
+        geoc.getLocation(pt, function(rs){
+            var addComp = rs.addressComponents;
+            str = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+            document.getElementById("str").value = str;
+        })
+     })
+
+    //如果经纬度没有给个默认值
+    var longitude=119.166;
+    var latitude = 36.654;
+
+    map.setDefaultCursor('crosshair');
+    map.enableScrollWheelZoom();
+    var point = new BMapGL.Point(longitude,latitude);
+    map.centerAndZoom(point, 13);  // 初始化地图,设置中心点坐标和地图级别
+    var gc = new BMapGL.Geocoder(); //正/逆地址解析，用于坐标与地址间的相互转换
+    var marker = new BMapGL.Marker(point);
+    map.addOverlay(marker);
+    marker.addEventListener('click',
+    function(e) {
+
+     });
+    marker.enableDragging();
+    marker.addEventListener('dragend',
+    function(e) {
+        gc.getLocation(e.point,
+            function(rs) {
+                showLocationInfo(e.point, rs);
+            });
+     });
+    function showLocationInfo(pt, rs) {
+        var opts = {
+            width: 250,
+            height: 150,
+            title: '当前位置'
+     };
+        var addComp = rs.addressComponents;
+        var addr = '当前位置：' + addComp.province + ', ' + addComp.city + ',' + addComp.district + ',' + addComp.street + ',' + addComp.streetNumber + '<br/>';
+        addr += '纬度: ' + pt.lat + ', ' + '经度：' + pt.lng;
+        var infoWindow = new BMapGL.InfoWindow(addr, opts);
+        marker.openInfoWindow(infoWindow);
+     }
+    map.addEventListener('click',
+    function(e) {
+
+     });
+    var traffic = new BMapGL.TrafficLayer();
+    map.addTileLayer(traffic);
+    function iploac(result) {
+        var cityName = result.name;
+     }
+    var myCity = new BMapGL.LocalCity();
+    myCity.get(iploac);
+    function sear(result) {
+        var local = new BMapGL.LocalSearch(map, {
+            renderOptions: {
+                map: map
+            }
+        });
+        local.search(result);
+     }
+</script>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}SH-Analysis二手房数据网站-二手房数据散点图表{% endblock %}
+
+{% block head %}
+    <!--POP弹窗-->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+{% endblock %}
+
+{% block body_display %}
+    <div class="container-fluid">
+        <h1 class="text-center display-4" style="padding: 1rem 2rem"><strong>潍坊二手房各数据项关系图形化散点图展示</strong></h1>
+        <div class="container">
+            <div class="card">
+                散点图是指在回归分析中，数据点在直角坐标系平面上的分布图，散点图表示因变量随自变量而变化的大致趋势，据此可以选择合适的函数对数据点进行拟合。
+                用两组数据构成多个坐标点，考察坐标点的分布，判断两变量之间是否存在某种关联或总结坐标点的分布模式。散点图将序列显示为一组点。值由点在图表中的位置表示。类别由图表中的不同标记表示。散点图通常用于比较跨类别的聚合数据。
+            </div>
+        </div>
+        <div class="media" style="margin-left: 50px; margin-top: 50px">
+            <div class="alert alert-danger" role="alert" style="width: 300px; height: 100px; text-align: center;margin-top: 20px;margin-left: 20px">
+                <h2>流式渲染和视觉映射式散点图</h2>
+                <div class="btn" style="margin-top: 20px">
+                    <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="绚烂多彩的散点图🏘（面积——总价）" data-content="该图和一般的散点图大同小异，横坐标为房屋面积，纵坐标为房屋总价，右侧工具为颜色指示器，可以选择显示想要的价格区间。
+                流式渲染可以使得数据分块编码传输，逐步传输到页面中，相较于普通渲染一次性加载完并显示图像而言，流式渲染数据与JS是并行的即请求一部分显示一部分，加快加载速度，进而可以提高效率；通过渐变式颜色的视觉映射使得页面图像不再单调。">
+                        点击查看该柱状图介绍
+                    </button>
+                </div>
+            </div>
+            <div class="media-body" style="margin-left: 60px;margin-top: 30px;margin-right: 400px">
+                <div class="card">
+                    <h5>描述</h5>
+                </div>
+            </div>
+        </div>
+        <div id="scatter" class="container" style="width:1600px; height:800px;"></div>
+    </div>
+
+    <script>
+        let array_scatter = new Array();
+        array_scatter = {{ scatter|safe }};
+        //散点图
+        let display_scatter = function() {
+            let main = echarts.init(document.getElementById("scatter"));
+            let option = {
+                title: {
+                    text: 'Dispersion Of Total Price Based On Square\n楼房总价与面积之间关系描述',
+                    left: 'center',
+                    top: 0
+                },
+                visualMap: {
+                    min: 50000,
+                    max: 4000000,
+                    dimension: 1,
+                    orient: 'vertical',
+                    right: 10,
+                    top: 'center',
+                    text: ['HIGH', 'LOW'],
+                    calculable: true,
+                    inRange: {
+                        color: ['#ff0000','#ffde00','#09ff00',
+                            '#b200fd', '#0225fa']
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+                },
+                xAxis: [
+                    {
+                        type: 'value',
+                        axisLabel:{
+                            interval:0,
+                            show:true,
+                            formatter:'{value}'+' 平方米',
+                            textStyle: {
+                                color: '#000',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            formatter:'{value}'+' 元',
+                            textStyle: {
+                                color: '#000',
+                                fontSize: 16
+                            }
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: 'price-square',
+                        type: 'scatter',
+                        symbolSize: 5,
+                        data: array_scatter,
+                        tooltip:{
+                            valueFormatter: function (value) {
+                                return value + ' 元';
+                            }
+                        }
+                    }
+                ]
+            };
+            main.setOption(option,true);
+        }
+        display_scatter()
+    </script>
+{% endblock %}
