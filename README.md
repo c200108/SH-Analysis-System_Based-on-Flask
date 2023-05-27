@@ -4,7 +4,7 @@ Web Programme(Web程序) == WeiFang Second-hand House Data Analysis And Forecast
 
 这个项目是我的本科毕业设计《基于Python的二手房数据分析预测系统》，**遵循MVT设计模式，基于B/S架构与高内聚低耦合原则，整个项目开发按照四个步骤进行：需求分析、数据获取、系统搭建与测试部署**。
 
-<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/1.png" style="zoom: 80%;" />
+<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/blob/main/1.png?raw=true" style="zoom: 80%;" />
 
 如果有类似课题的同学，可以参考一下。
 
@@ -36,19 +36,19 @@ Web Programme(Web程序) == WeiFang Second-hand House Data Analysis And Forecast
 
 爬虫程序图：
 
-<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/2.png" style="zoom:67%;" />
+<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/blob/main/2.png?raw=true" style="zoom:67%;" />
 
 
 
 Flask系统结构图：
 
-<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/3.png" style="zoom: 67%;" />
+<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/blob/main/3.png?raw=true" style="zoom: 67%;" />
 
 
 
 部署流程图：
 
-<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/4.png" style="zoom:80%;" />
+<img src="https://github.com/c200108/SH-Analysis-System_Based-on-Flask/blob/main/4.png?raw=true" style="zoom:80%;" />
 
 
 
