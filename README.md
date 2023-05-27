@@ -34,6 +34,12 @@ Web Programme(Web程序) == WeiFang Second-hand House Data Analysis And Forecast
 
 
 
+爬虫程序图：
+
+<img src="https://duojiyun-storage.xn--l3q92w0lc.xyz/2023/05/27/226df63c936990888221520812c5dd1e.png" style="zoom:67%;" />
+
+
+
 Flask系统结构图：
 
 <img src="https://duojiyun-storage.xn--l3q92w0lc.xyz/2023/05/27/395ceb6997365c81edecc9e594ccac3a.png" style="zoom: 67%;" />
